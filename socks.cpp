@@ -56,7 +56,7 @@ namespace socks5cpp {
 		return res;
 	}
 
-	int SocksClient::connect()
+	int SocksClient::connect(SOCKET& sfd)
 	{
 		state = SocksState::Connecting;
 
@@ -191,12 +191,12 @@ namespace socks5cpp {
 		return iResult;
 	}
 
-	int SocksClient::sendPacket(const char * _Buffer, const size_t _Size)
+	int SocksClient::sendPacket(SOCKET& sfd, const char * _Buffer, const size_t _Size)
 	{
 		return ::send(sfd, _Buffer, _Size, 0);
 	}
 
-	int SocksClient::recvPacket(char * _Buffer, const size_t _Size)
+	int SocksClient::recvPacket(SOCKET& sfd, char * _Buffer, const size_t _Size)
 	{
 		return ::recv(sfd, _Buffer, _Size, 0);
 	}

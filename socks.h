@@ -63,8 +63,6 @@ namespace socks5cpp {
 		SocksUrl url;
 		SocksUrl targetUrl;
 		SocksState state;
-
-		SOCKET sfd;
 	public:
 		unsigned long long timeoutDuration = 20000; // 20 seconds
 
@@ -73,9 +71,9 @@ namespace socks5cpp {
 
 		SocksClient::SocksUrl scanURL(const std::string _url);
 
-		int connect();
-		int sendPacket(const char* _Buffer, const size_t _Size);
-		int recvPacket(char* _Buffer, const size_t _Size);
+		int connect(SOCKET& sfd);
+		int sendPacket(SOCKET& sfd, const char* _Buffer, const size_t _Size);
+		int recvPacket(SOCKET& sfd, char* _Buffer, const size_t _Size);
 		void destroy();
 
 		const SocksState& getState();
